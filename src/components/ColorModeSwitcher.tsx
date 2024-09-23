@@ -11,6 +11,7 @@ const ColorModeSwitcher = () => {
       icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
       onClick={toggleColorMode}
       color={useColorModeValue("black", "white")}
+      mr={1}
     />
   );
 };
