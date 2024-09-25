@@ -21,7 +21,7 @@ const HeroSection = () => {
 
   return (
     <HStack
-      w={["250px", "500px", "600px", "700px", "50%"]}
+      w={["250px", "500px", "600px", "700px", "70%"]}
       h={["350px", "200px"]}
       p={3}
       bg={useColorModeValue(
