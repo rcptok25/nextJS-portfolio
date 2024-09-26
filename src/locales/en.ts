@@ -34,6 +34,23 @@ const en = {
   education_branch: "Computer Programming",
   coming_soon: "Coming Soon",
   contact_me: "contact me",
+  copyrigth: "Recep TOK © 2024 All rights reserved.",
+  full_name: "Full Name",
+  phone_number: "Phone Number",
+  email: "Email",
+  contact_type: "Contact Type",
+  description: "Description",
+  send_contact: "Send Contact",
+  location: "Location",
+  select: "Select",
+  job: "Job",
+  internship: "Internship",
+  collaboration: "Collaboration",
+  question: "Question",
+  complaint: "Complaint",
+  suggestion: "Suggestion",
+  bug: "Bug",
+  other: "Other",
 };
 
 export default en;

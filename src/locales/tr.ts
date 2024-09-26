@@ -34,6 +34,23 @@ const tr = {
   education_branch: "Bilgisayar Programcılığı",
   coming_soon: "Yakında",
   contact_me: "iletişime geçin",
+  copyrigth: "Recep TOK © 2024 Tüm hakları saklıdır.",
+  full_name: "Ad Soyad",
+  phone_number: "Telefon Numarası",
+  email: "E-posta",
+  contact_type: "İletişim Türü",
+  description: "Açıklama",
+  send_contact: "İletişim Gönder",
+  location: "Konum",
+  select: "Seç",
+  job: "İş",
+  internship: "Staj",
+  collaboration: "İş Birliği",
+  question: "Soru",
+  complaint: "Şikayet",
+  suggestion: "Öneri",
+  bug: "Hata",
+  other: "Diğer",
 };
 
 export default tr;

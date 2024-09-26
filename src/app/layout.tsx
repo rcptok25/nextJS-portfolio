@@ -3,6 +3,7 @@ import { PropsWithChildren } from "react";
 import { Providers } from "./providers";
 
 import { Metadata, Viewport } from "next";
+import { theme } from "@chakra-ui/react";
 
 const APP_NAME = "My Portfolio";
 const APP_DEFAULT_TITLE = "Recep TOK | Front-End Developer";
@@ -61,7 +62,7 @@ export const viewport: Viewport = {
   initialScale: 1.0,
   width: "device-width",
   viewportFit: "cover",
-  themeColor: "#000000",
+  themeColor: theme.colors.black,
 };
 
 const RootLayout = ({ children }: PropsWithChildren) => {

@@ -1,7 +1,8 @@
 import { experiences } from "@/constants/about-me";
 import { useLanguage } from "@/context/LanguageContext";
-import { Stack, Heading, Text, Grid, GridItem } from "@chakra-ui/react";
+import { Stack, Heading, Text, Grid, GridItem, HStack } from "@chakra-ui/react";
 import React from "react";
+import { FaMapMarker } from "react-icons/fa";
 
 const Experiences = () => {
   const { t } = useLanguage();
@@ -20,7 +21,10 @@ const Experiences = () => {
               <Heading as="h4" size="md">
                 {t(experience.company)}
               </Heading>
-              <Text>{t(experience.location)}</Text>
+              <HStack>
+                <FaMapMarker />
+                <Text> {t(experience.location)}</Text>
+              </HStack>
               <Text>{t(experience.role)}</Text>
               <Text>{t(experience.date)}</Text>
               <Text>{t(experience.description_key)}</Text>
