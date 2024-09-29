@@ -1,7 +1,7 @@
 import RFFInput from "@/components/forms/RFFInput";
 import RFFSelect from "@/components/forms/RFFSelect";
 import RFFTextarea from "@/components/forms/RFFTextArea";
-import { contactTypeOptions } from "@/constants/const";
+import { contactTypeOptions, TOAST_DURATION } from "@/constants/const";
 import { useLanguage } from "@/context/LanguageContext";
 import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import {
@@ -13,14 +13,17 @@ import {
   GridItem,
   HStack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useCallback, useMemo } from "react";
 import { Form } from "react-final-form";
 import { FaMapMarker } from "react-icons/fa";
-
+import { useSendMessageRequest } from "@/hooks/useSendMessageRequest";
+import { ContactRequestType, ErrorType } from "@/types/type";
 const Contact = () => {
   const { t } = useLanguage();
-
+  const toast = useToast();
+  const { handleSendMessage } = useSendMessageRequest();
   const langContactTypeOptions = useMemo(
     () =>
       contactTypeOptions?.map((option) => ({
@@ -30,7 +33,43 @@ const Contact = () => {
     [t]
   );
 
-  const onSubmit = useCallback(() => {}, []);
+  const onSubmit = useCallback(
+    async (values: ContactRequestType) => {
+      try {
+        const { contact_type_option } = values;
+        const updatedValues = {
+          ...values,
+          contact_type: contact_type_option?.value || "",
+          contact_type_option: undefined,
+        };
+
+        const response = await handleSendMessage(
+          updatedValues as ContactRequestType
+        );
+
+        if ((response as { error?: string })?.error) {
+          throw new Error(String((response as { error?: string }).error));
+        }
+
+        toast({
+          title: t("contact_success"),
+          status: "success",
+          duration: Number(TOAST_DURATION),
+          isClosable: true,
+        });
+      } catch (error: ErrorType | unknown) {
+        toast({
+          title: t("contact_error"),
+          description:
+            (error as ErrorType)?.message || t("something_went_wrong"),
+          status: "error",
+          duration: Number(TOAST_DURATION),
+          isClosable: true,
+        });
+      }
+    },
+    [handleSendMessage, t, toast]
+  );
 
   return (
     <Stack p={2} justifyContent={"space-between"}>
@@ -85,7 +124,18 @@ const Contact = () => {
             onSubmit={onSubmit}
             render={({ handleSubmit }) => (
               <form onSubmit={handleSubmit}>
-                <RFFInput name="full_name" label={t("full_name")} />
+                <RFFSelect
+                  name="contact_type_option"
+                  label={t("contact_type")}
+                  options={langContactTypeOptions}
+                />
+                <RFFInput
+                  name="full_name"
+                  label={t("full_name")}
+                  labelStyle={{
+                    mt: 3,
+                  }}
+                />
                 <RFFInput
                   name="phone_number"
                   label={t("phone_number")}
@@ -102,15 +152,6 @@ const Contact = () => {
                     mt: 3,
                   }}
                 />
-                <RFFSelect
-                  name="contact_type"
-                  label={t("contact_type")}
-                  options={langContactTypeOptions}
-                  labelStyle={{
-                    mt: 3,
-                  }}
-                />
-
                 <RFFTextarea
                   name="description"
                   label={t("description")}

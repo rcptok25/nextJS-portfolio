@@ -13,7 +13,6 @@ interface Props {
   name: string;
   label: ReactElement | string;
   placeholder?: string;
-  value?: string;
   readOnly?: boolean;
   style?: CSSProperties;
   required?: string;
@@ -27,7 +26,6 @@ interface Props {
 const RFFTextarea: FC<Props> = ({
   name,
   label,
-  value,
   placeholder,
   readOnly,
   style,
@@ -50,7 +48,6 @@ const RFFTextarea: FC<Props> = ({
               {label}
             </FormLabel>
             <Textarea
-              data-cy="textArea"
               placeholder={placeholder}
               disabled={readOnly}
               maxLength={maxLength}
@@ -62,6 +59,7 @@ const RFFTextarea: FC<Props> = ({
                 backgroundColor: readOnly && theme.colors.lightgrey,
               }}
               {...input}
+              autoComplete="off"
             />
             {meta.touched && meta.submitFailed && meta.error && (
               <FieldError

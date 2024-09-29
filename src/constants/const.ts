@@ -74,3 +74,5 @@ export const contactTypeOptions = [
     value: "Other",
   },
 ];
+
+export const TOAST_DURATION = process.env.NEXT_PUBLIC_TOAST_DURATION || 3000;

@@ -95,6 +95,15 @@ const RFFSelect: FC<RFFSelectProps> = ({
                   backgroundColor: selectColors.backgroundColor,
                   color: selectColors.color,
                 }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: selectColors.backgroundColor,
+                  color: selectColors.color,
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: selectColors.color,
+                }),
               }}
               onChange={(data) => {
                 input.onChange(data);

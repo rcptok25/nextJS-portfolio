@@ -50,6 +50,7 @@ const RFFInput: FC<FormInputProps> = ({
                 type === "password" && !isPasswordVisible ? "password" : type
               }
               placeholder={placeholder}
+              autoComplete="off"
             />
             {type === "password" ? (
               <InputRightElement
