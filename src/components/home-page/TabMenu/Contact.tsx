@@ -19,7 +19,7 @@ import React, { useCallback, useMemo } from "react";
 import { Form } from "react-final-form";
 import { FaMapMarker } from "react-icons/fa";
 import { useSendMessageRequest } from "@/hooks/useSendMessageRequest";
-import { ContactRequestType, ErrorType } from "@/types/type";
+import { ContactRequestType, RequestErrorType } from "@/types/type";
 const Contact = () => {
   const { t } = useLanguage();
   const toast = useToast();
@@ -57,11 +57,11 @@ const Contact = () => {
           duration: Number(TOAST_DURATION),
           isClosable: true,
         });
-      } catch (error: ErrorType | unknown) {
+      } catch (error: RequestErrorType | unknown) {
         toast({
           title: t("contact_error"),
           description:
-            (error as ErrorType)?.message || t("something_went_wrong"),
+            (error as RequestErrorType)?.message || t("something_went_wrong"),
           status: "error",
           duration: Number(TOAST_DURATION),
           isClosable: true,
